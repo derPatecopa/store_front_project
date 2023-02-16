@@ -4,9 +4,12 @@
   "description": "",
   "main": "server.ts",
   "scripts": {
+    "lint": "eslint . --ext .ts",
+    "jasmine": "jasmine",
+    "prettier": "npx prettier --write src/",
     "build": "npx tsc",
     "start": "node src/server.ts",
-    "watch": "tsc-watch --esModuleInterop src/server.ts --outDir ./dist --onSuccess \"node ./dist/server.js\"",
+    "watch": "tsc-watch --esModuleInterop src/server.ts --outDir ./build --onSuccess \"node ./build/server.js\"",
     "test": "jasmine-ts",
     "tsc": "tsc"
   },
@@ -32,6 +35,8 @@
     "@types/nodemon": "^1.19.2",
     "@types/pg": "^7.14.11",
     "@types/prettier": "^2.7.2",
+    "@typescript-eslint/eslint-plugin": "^5.52.0",
+    "@typescript-eslint/parser": "^5.52.0",
     "cors": "^2.8.5",
     "cross-env": "^7.0.3",
     "dotenv": "^16.0.3",
