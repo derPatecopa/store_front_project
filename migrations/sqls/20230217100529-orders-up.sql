@@ -1,1 +1,1 @@
-/* Replace with your SQL commands */
+CREATE TABLE orders (id SERIAL PRIMARY KEY, product_id INT REFERENCES products(id), quantity INT, user_id INT REFERENCES users(id));
