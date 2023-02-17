@@ -5,19 +5,19 @@ These are the notes from a meeting with the frontend developer that describe wha
 
 ## API Endpoints
 #### Products
-- Index 
-- Show
-- Create [token required]
-- [OPTIONAL] Top 5 most popular products 
-- [OPTIONAL] Products by category (args: product category)
+- Index -> http://localhost:3000/storefront/products/ GET
+- Show -> http://localhost:3000/storefront/products/:id GET
+- Create [token required] -> http://localhost:3000/storefront/products/ POST
+- [OPTIONAL] Top 5 most popular products -> update this if i decide to do it
+- [OPTIONAL] Products by category (args: product category) -> update this if i decide to do it
 
 #### Users
-- Index [token required]
-- Show [token required]
-- Create N[token required]
+- Index [token required] -> http://localhost:3000/storefront/users GET 
+- Show [token required] -> http://localhost:3000/storefront/users/:id GET
+- Create N[token required] -> http://localhost:3000/storefront/users POST
 
 #### Orders
-- Current Order by user (args: user id)[token required]
+- Current Order by user (args: user id)[token required] -> http://localhost:3000/storefront/users/:id/orders 
 - [OPTIONAL] Completed Orders by user (args: user id)[token required]
 
 ## Data Shapes
