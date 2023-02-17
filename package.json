@@ -4,6 +4,8 @@
   "description": "",
   "main": "server.ts",
   "scripts": {
+    "migrate-up": "db-migrate up --config database.json -e dev",
+    "migrate-down": "db-migrate down --config database.json -e dev",
     "lint": "eslint . --ext .ts",
     "jasmine": "jasmine",
     "prettier": "npx prettier --write src/",
