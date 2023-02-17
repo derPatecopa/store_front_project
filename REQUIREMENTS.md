@@ -17,8 +17,9 @@ These are the notes from a meeting with the frontend developer that describe wha
 - Create N[token required] -> http://localhost:3000/storefront/users POST
 
 #### Orders
-- Current Order by user (args: user id)[token required] -> http://localhost:3000/storefront/users/:id/orders 
-- [OPTIONAL] Completed Orders by user (args: user id)[token required]
+- Current Order by user (args: user id)[token required] -> http://localhost:3000/storefront/users/:id/orders GET
+- [OPTIONAL] Completed Orders by user (args: user id)[token required] -> update this if i decide to do it
+
 
 ## Data Shapes
 #### Product
@@ -27,11 +28,15 @@ These are the notes from a meeting with the frontend developer that describe wha
 - price
 - [OPTIONAL] category
 
+Table: Products (id:Primary Serial Key [foreign key to orders table], name:varchar, price:number)
+
 #### User
 - id
 - firstName
 - lastName
 - password
+
+Table: Users (id: Primary Serial Key[foreign key to orders table], firstName:varchar, lastName:varchar, password:text)
 
 #### Orders
 - id
@@ -39,4 +44,6 @@ These are the notes from a meeting with the frontend developer that describe wha
 - quantity of each product in the order
 - user_id
 - status of order (active or complete)
+
+Table: Orders (id: Primary Serial Key, product_id:products(id), quantity:number, user_id:users(id), status:varchar)
 
