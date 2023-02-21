@@ -36,7 +36,7 @@ Table: Products (id:Primary Serial Key [foreign key to orders table], name:varch
 - lastName
 - password
 
-Table: Users (id: Primary Serial Key[foreign key to orders table], firstName:varchar, lastName:varchar, password:text)
+Table: Users (id: Primary Serial Key[foreign key to orders table], first_name:varchar, last_name:varchar, user_name:varchar, password:text)
 
 #### Orders
 - id
