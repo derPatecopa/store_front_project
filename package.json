@@ -12,12 +12,14 @@
     "build": "npx tsc",
     "start": "node src/server.ts",
     "watch": "tsc-watch --esModuleInterop src/server.ts --outDir ./build --onSuccess \"node ./build/server.js\"",
-    "test": "jasmine-ts",
+    "test": "npx tsc && export ENV=test && db-migrate --env test up && jasmine-ts && db-migrate reset --env test",
+    "reset": "db-migrate reset --env test",
     "tsc": "tsc"
   },
   "author": "Udacity",
   "license": "ISC",
   "dependencies": {
+    "bcrypt": "^5.1.0",
     "body-parser": "^1.19.0",
     "db-migrate": "^0.11.13",
     "db-migrate-pg": "^1.2.2",
@@ -27,6 +29,7 @@
     "typescript": "^4.1.3"
   },
   "devDependencies": {
+    "@types/bcrypt": "^5.0.0",
     "@types/body-parser": "^1.19.2",
     "@types/cors": "^2.8.13",
     "@types/db-migrate-pg": "^0.0.10",

@@ -2,7 +2,7 @@
     "dev": {
       "driver": "pg",
       "host": {"ENV": "POSTGRES_HOST"},
-      "port": "5433",
+      "port": {"ENV":"POSTGRES_PORT"},
       "database":{"ENV": "POSTGRES_DB"},
       "user": {"ENV": "POSTGRES_USER"},
       "password": {"ENV": "POSTGRES_PASSWORD"}
@@ -10,7 +10,7 @@
     "test": {
         "driver": "pg",
         "host": {"ENV": "POSTGRES_HOST"},
-        "port": "5433",
+        "port": {"ENV": "POSTGRES_TEST_PORT"},
         "database":{"ENV": "POSTGRES_TEST_DB"},
         "user": {"ENV": "POSTGRES_TEST_USER"},
         "password": {"ENV": "POSTGRES_TEST_PASSWORD"}
