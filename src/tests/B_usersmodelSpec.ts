@@ -8,7 +8,7 @@ const pepper = process.env.BCRYPT_PASSWORD;
 
 const store = new UserStore();
 
-fdescribe("Users Model", () => {
+export const usersSuite = describe("Users Model", () => {
   it("should have a create method", () => {
     expect(store.create).toBeDefined();
   });
@@ -88,10 +88,10 @@ fdescribe("Users Model", () => {
       ])
     );
   });
-  it ("should have a show method", () => {
+  it("should have a show method", () => {
     expect(store.show).toBeDefined();
   });
-  it ("show method should return a user with the given user id", async () => {
+  it("show method should return a user with the given user id", async () => {
     const result: User = await store.show("1");
     expect(result).toEqual({
       id: 1,
@@ -99,6 +99,6 @@ fdescribe("Users Model", () => {
       last_name: jasmine.any(String),
       user_name: jasmine.any(String),
       password: jasmine.any(String),
-    })
-  })
+    });
+  });
 });

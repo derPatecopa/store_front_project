@@ -14,7 +14,7 @@ These are the notes from a meeting with the frontend developer that describe wha
 #### Users
 - Index [token required] -> http://localhost:3000/storefront/users GET 
 - Show [token required] -> http://localhost:3000/storefront/users/:id GET
-- Create N[token required] -> http://localhost:3000/storefront/users POST
+- Create [token required] -> http://localhost:3000/storefront/users POST
 
 #### Orders
 - Current Order by user (args: user id)[token required] -> http://localhost:3000/storefront/users/:id/orders GET
