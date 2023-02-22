@@ -43,5 +43,13 @@ it("create method should add an order", async () => {
     expect(result.quantity).toEqual(testOrder.quantity);
     expect(result.user_id).toEqual(testOrder.user_id);
   });
+  it("getOrderByUser method should return a list of orders for a user", async () => {
+    const createdOrder = await store.create(testOrder);
+    const result = await store.getOrderByUser(createdOrder.user_id);
+    expect(result.length).toBeGreaterThan(0);
+    expect(result[0].product_id).toEqual(testOrder.product_id);
+    expect(result[0].quantity).toEqual(testOrder.quantity);
+    expect(result[0].user_id).toEqual(testOrder.user_id);
+  });
 });
 
