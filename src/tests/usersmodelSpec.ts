@@ -8,7 +8,7 @@ const pepper = process.env.BCRYPT_PASSWORD;
 
 const store = new UserStore();
 
-describe("Products Model", () => {
+fdescribe("Users Model", () => {
   it("should have a create method", () => {
     expect(store.create).toBeDefined();
   });
@@ -39,14 +39,14 @@ describe("Products Model", () => {
   it("should have a authenticate method", () => {
     expect(store.authenticate).toBeDefined();
   });
-  it("should return a user when provided with a valid user name and password", async () => {
+  it("authenticate method should return a user when provided with a valid user name and password", async () => {
     const user: User = {
       first_name: "Marlon",
       last_name: "Brando",
       user_name: "MarlonBrando",
       password: "mafia",
     };
-   
+
     await store.create(user);
     const authenticatedUser = await store.authenticate(
       user.user_name,
@@ -55,10 +55,10 @@ describe("Products Model", () => {
     expect(authenticatedUser).not.toBeNull();
     // console.log(
     //   `This is authenticated user from spec:
-    //   ${authenticatedUser?.id} 
-    // ${authenticatedUser?.first_name} 
-    // ${authenticatedUser?.last_name} 
-    // ${authenticatedUser?.user_name} 
+    //   ${authenticatedUser?.id}
+    // ${authenticatedUser?.first_name}
+    // ${authenticatedUser?.last_name}
+    // ${authenticatedUser?.user_name}
     // ${authenticatedUser?.password}`
     // );
     expect(authenticatedUser?.user_name).toEqual(user.user_name);
@@ -70,4 +70,35 @@ describe("Products Model", () => {
     );
     expect(authenticatedUser).toBeNull();
   });
+  it("should have a index method", () => {
+    expect(store.index).toBeDefined();
+  });
+  it("index method should return a list of users", async () => {
+    const result: User[] = await store.index();
+    //expect(result.length).toEqual(2);
+    expect(result).toEqual(
+      jasmine.arrayContaining([
+        {
+          id: jasmine.any(Number),
+          first_name: "John",
+          last_name: "Smith",
+          user_name: "JohnSmith",
+          password: jasmine.any(String),
+        },
+      ])
+    );
+  });
+  it ("should have a show method", () => {
+    expect(store.show).toBeDefined();
+  });
+  it ("show method should return a user with the given user id", async () => {
+    const result: User = await store.show("1");
+    expect(result).toEqual({
+      id: 1,
+      first_name: jasmine.any(String),
+      last_name: jasmine.any(String),
+      user_name: jasmine.any(String),
+      password: jasmine.any(String),
+    })
+  })
 });

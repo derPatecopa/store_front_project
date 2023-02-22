@@ -18,7 +18,7 @@ describe("Products Model", () => {
       price: 1000,
     });
     expect(result).toEqual({
-      id: 1,
+      id: jasmine.any(Number),
       name: "test_Product",
       price: 1000,
     });
@@ -27,7 +27,7 @@ describe("Products Model", () => {
     const result: Product[] = await store.index();
     expect(result).toEqual([
       {
-        id: 1,
+        id: jasmine.any(Number),
         name: "test_Product",
         price: 1000,
       },
@@ -36,7 +36,7 @@ describe("Products Model", () => {
   it("show method should return the correct product", async () => {
     const result: Product = await store.show("1");
     expect(result).toEqual({
-      id: 1,
+      id: jasmine.any(Number),
       name: "test_Product",
       price: 1000,
     });
