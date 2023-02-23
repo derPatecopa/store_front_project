@@ -5,19 +5,19 @@ These are the notes from a meeting with the frontend developer that describe wha
 
 ## API Endpoints
 #### Products
-- Index -> http://localhost:3000/storefront/products/ GET
-- Show -> http://localhost:3000/storefront/products/:id GET
-- Create [token required] -> http://localhost:3000/storefront/products/ POST
+- Index -> http://localhost:3000/products/ GET
+- Show -> http://localhost:3000/products/:id GET
+- Create [token required] -> http://localhost:3000/products/ POST
 - [OPTIONAL] Top 5 most popular products -> update this if i decide to do it
 - [OPTIONAL] Products by category (args: product category) -> update this if i decide to do it
 
 #### Users
-- Index [token required] -> http://localhost:3000/storefront/users GET 
-- Show [token required] -> http://localhost:3000/storefront/users/:id GET
-- Create [token required] -> http://localhost:3000/storefront/users POST
+- Index [token required] -> http://localhost:3000/users GET 
+- Show [token required] -> http://localhost:3000/users/:id GET
+- Create [token required] -> http://localhost:3000/users POST
 
 #### Orders
-- Current Order by user (args: user id)[token required] -> http://localhost:3000/storefront/users/:id/orders GET
+- Current Order by user (args: user id)[token required] -> http://localhost:3000/users/:id/orders GET
 - [OPTIONAL] Completed Orders by user (args: user id)[token required] -> update this if i decide to do it
 
 

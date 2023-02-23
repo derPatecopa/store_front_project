@@ -13,14 +13,14 @@ export const ordersSuite = describe("Orders Model", () => {
   });
   it("should have a show method", () => {
     expect(store.show).toBeDefined();
-  }); 
+  });
   it("should have a create method", () => {
     expect(store.create).toBeDefined();
   });
   it("should have a getOrderByUser method", () => {
-    expect(store.getOrderByUser).toBeDefined();  
-});
-it("create method should add an order", async () => {
+    expect(store.getOrderByUser).toBeDefined();
+  });
+  it("create method should add an order", async () => {
     const result = await store.create(testOrder);
     expect(result.product_id).toEqual(testOrder.product_id);
     expect(result.quantity).toEqual(testOrder.quantity);
@@ -35,7 +35,7 @@ it("create method should add an order", async () => {
   });
   it("show method should return the correct order", async () => {
     const createdOrder = await store.create(testOrder);
-    if(!createdOrder.id) {
+    if (!createdOrder.id) {
       throw new Error("Failed to create order");
     }
     const result = await store.show(createdOrder.id.toString());
@@ -52,4 +52,3 @@ it("create method should add an order", async () => {
     expect(result[0].user_id).toEqual(testOrder.user_id);
   });
 });
-
