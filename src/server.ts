@@ -24,7 +24,6 @@ productRoutes(app);
 usersRoutes(app);
 orderRoutes(app);
 
-
 app.get(
   "/test-cors",
   cors(corsOptions),

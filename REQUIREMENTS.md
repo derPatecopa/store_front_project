@@ -15,6 +15,7 @@ These are the notes from a meeting with the frontend developer that describe wha
 - Index [token required] -> http://localhost:3000/users GET 
 - Show [token required] -> http://localhost:3000/users/:id GET
 - Create [token required] -> http://localhost:3000/users POST
+There is a seperate authenticate endpoint at -> http://localhost:3000/authenticate
 
 #### Orders
 - Current Order by user (args: user id)[token required] -> http://localhost:3000/users/:id/orders GET
