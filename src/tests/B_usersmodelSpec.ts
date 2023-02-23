@@ -8,49 +8,43 @@ const pepper = process.env.BCRYPT_PASSWORD;
 
 const store = new UserStore();
 
+const testUser: User = {
+  first_name: "John",
+  last_name: "Smith",
+  user_name: "JohnSmith",
+  password: "password123",
+};
+
 export const usersSuite = describe("Users Model", () => {
   it("should have a create method", () => {
     expect(store.create).toBeDefined();
   });
   it("create method should add a user to the users table", async () => {
-    const user: User = {
-      first_name: "John",
-      last_name: "Smith",
-      user_name: "JohnSmith",
-      password: "password123",
-    };
-    const createdUser = await store.create(user);
+    const createdUser = await store.create(testUser);
 
     expect(createdUser.id).toBeGreaterThan(0);
     expect(createdUser).toEqual({
       id: jasmine.any(Number),
-      first_name: "John",
-      last_name: "Smith",
-      user_name: "JohnSmith",
+      first_name: testUser.first_name,
+      last_name: testUser.last_name,
+      user_name: testUser.user_name,
       password: jasmine.any(String),
     });
     //console.log(createdUser.password);
     //comparing the created password with the user password if it was hashed correctly
     //saltRounds not neccessary to add, because it is just neccessary during the hashing process
     expect(
-      bcrypt.compareSync(user.password + pepper, createdUser.password)
+      bcrypt.compareSync(testUser.password + pepper, createdUser.password)
     ).toBe(true);
   });
   it("should have a authenticate method", () => {
     expect(store.authenticate).toBeDefined();
   });
   it("authenticate method should return a user when provided with a valid user name and password", async () => {
-    const user: User = {
-      first_name: "Marlon",
-      last_name: "Brando",
-      user_name: "MarlonBrando",
-      password: "mafia",
-    };
-
-    await store.create(user);
+    await store.create(testUser);
     const authenticatedUser = await store.authenticate(
-      user.user_name,
-      user.password
+      testUser.user_name,
+      testUser.password
     );
     expect(authenticatedUser).not.toBeNull();
     // console.log(
@@ -61,7 +55,7 @@ export const usersSuite = describe("Users Model", () => {
     // ${authenticatedUser?.user_name}
     // ${authenticatedUser?.password}`
     // );
-    expect(authenticatedUser?.user_name).toEqual(user.user_name);
+    expect(authenticatedUser?.user_name).toEqual(testUser.user_name);
   });
   it("should return null when provided with an invalid user name and password", async () => {
     const authenticatedUser = await store.authenticate(
@@ -80,9 +74,9 @@ export const usersSuite = describe("Users Model", () => {
       jasmine.arrayContaining([
         {
           id: jasmine.any(Number),
-          first_name: "John",
-          last_name: "Smith",
-          user_name: "JohnSmith",
+          first_name: testUser.first_name,
+          last_name: testUser.last_name,
+          user_name: testUser.user_name,
           password: jasmine.any(String),
         },
       ])

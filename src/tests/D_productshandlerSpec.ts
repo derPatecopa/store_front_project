@@ -25,13 +25,9 @@ describe("Products Handler", () => {
     expect(response.body.price).toBe(product.price);
   });
   it("should create a new product", async () => {
-    const product = {
-      name: "product_from_create_test",
-      price: 12345,
-    };
-    const response = await await request(app).post("/products").send(product);
+    const response = await request(app).post("/products").send(testProduct);
     expect(response.status).toBe(200);
-    expect(response.body.name).toBe(product.name);
-    expect(response.body.price).toBe(product.price);
+    expect(response.body.name).toBe(testProduct.name);
+    expect(response.body.price).toBe(testProduct.price);
   });
 });

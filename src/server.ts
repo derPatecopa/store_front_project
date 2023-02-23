@@ -2,6 +2,7 @@ import express, { Request, Response } from "express";
 import bodyParser from "body-parser";
 import cors from "cors";
 import productRoutes from "./handlers/productshandler";
+import usersRoutes from "./handlers/usershandler";
 
 const app: express.Application = express();
 const address = "0.0.0.0:3000";
@@ -19,6 +20,7 @@ app.get("/", function (req: Request, res: Response) {
 });
 
 productRoutes(app);
+usersRoutes(app);
 
 app.get(
   "/test-cors",
