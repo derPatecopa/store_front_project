@@ -30,7 +30,6 @@ app.get(
   function (
     _req: express.Request,
     res: express.Response,
-    next: express.NextFunction
   ) {
     res.json({ msg: "This is CORS-enabled with a middleware" });
   }

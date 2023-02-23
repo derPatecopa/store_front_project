@@ -3,7 +3,6 @@ import app from "../server";
 import { User, UserStore } from "../models/usersmodel";
 import bcrypt from "bcrypt";
 import dotenv from "dotenv";
-import jwt, { Secret } from "jsonwebtoken";
 
 dotenv.config();
 

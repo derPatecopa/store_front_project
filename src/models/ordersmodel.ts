@@ -1,4 +1,3 @@
-import bcrypt from "bcrypt";
 import Client from "../database";
 import dotenv from "dotenv";
 
