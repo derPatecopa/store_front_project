@@ -46,5 +46,5 @@ Table: Users (id: Primary Serial Key[foreign key to orders table], first_name:va
 - user_id
 - status of order (active or complete)
 
-Table: Orders (id: Primary Serial Key, product_id:products(id), quantity:number, user_id:users(id), status:varchar)
+Table: Orders (id: Primary Serial Key, product_id:products(id), quantity:number, user_id:users(id), order_status order_status DEFAULT 'active')
 
