@@ -41,7 +41,7 @@ const getOrderByUser = async (req: Request, res: Response) => {
     return;
   }
   const userId = req.params.id;
-  console.log("This is user ID" + userId);
+  //console.log("This is user ID" + userId);
   const orders: Order[] = await store.getOrderByUser(userId);
   res.json(orders);
 };
