@@ -7,7 +7,14 @@ dotenv.config();
 
 const store = new UserStore();
 
-const index = async (_req: Request, res: Response) => {
+const index = async (req: Request, res: Response) => {
+  try {
+    jwt.verify(req.body.token, process.env.TOKEN_SECRET as Secret);
+  } catch (err) {
+    res.status(401);
+    res.json(`Invalid token ${err}`);
+    return;
+  }
   const users = await store.index();
   res.json(users);
 };
@@ -49,9 +56,15 @@ const authenticate = async (req: Request, res: Response) => {
 };
 
 const show = async (req: Request, res: Response) => {
-  const user = await store.show(req.params.id);
-  //console.log(product);
-  res.json(user);
+  try {
+    jwt.verify(req.body.token, process.env.TOKEN_SECRET as Secret);
+    const user = await store.show(req.params.id);
+    //console.log(product);
+    res.json(user);
+  } catch (err) {
+    res.status(401);
+    res.json(`Invalid token ${err}`);
+  }
 };
 
 const usersRoutes = (app: express.Application) => {

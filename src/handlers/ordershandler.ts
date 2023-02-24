@@ -1,5 +1,7 @@
 import express, { Request, Response } from "express";
 import { Order, OrderStore } from "../models/ordersmodel";
+import jwt, { Secret } from "jsonwebtoken";
+//import dotenv from "dotenv";
 
 const store = new OrderStore();
 
@@ -31,8 +33,16 @@ const create = async (req: Request, res: Response) => {
 
 const getOrderByUser = async (req: Request, res: Response) => {
   //casting the string with the help of parseInt to make it an integer
-  const userId = parseInt(req.params.user_id);
-  const orders = await store.getOrderByUser(userId);
+  try {
+    jwt.verify(req.body.token, process.env.TOKEN_SECRET as Secret);
+  } catch (err) {
+    res.status(401);
+    res.json(`Invalid token ${err}`);
+    return;
+  }
+  const userId = req.params.id;
+  console.log("This is user ID" + userId);
+  const orders: Order[] = await store.getOrderByUser(userId);
   res.json(orders);
 };
 
@@ -40,7 +50,7 @@ const orderRoutes = (app: express.Application) => {
   app.get("/orders", index);
   app.get("/orders/:id", show);
   app.post("/orders", create);
-  app.get("users/:id/orders", getOrderByUser);
+  app.get("/users/:id/orders", getOrderByUser);
 };
 
 export default orderRoutes;

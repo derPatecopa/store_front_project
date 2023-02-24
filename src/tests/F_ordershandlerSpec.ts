@@ -1,6 +1,7 @@
 import request from "supertest";
 import app from "../server";
 import { Order, OrderStore } from "../models/ordersmodel";
+import jwt, { Secret } from "jsonwebtoken";
 
 const store = new OrderStore();
 
@@ -19,12 +20,7 @@ describe("Orders Handler", () => {
     const response = await request(app).get("/orders");
     expect(response.body.length).toBeGreaterThan(0);
   });
-  it("orderByUser method should return a order with the given id", async () => {
-    const order = await store.create(testOrder);
-    const orders: Order[] = await store.getOrderByUser(testOrder.user_id);
 
-    expect(orders).toContain(order);
-  });
   it("create method should add a order to the orders table", async () => {
     const createdOrder = await store.create(testOrder);
     expect(createdOrder).toEqual({
@@ -33,6 +29,12 @@ describe("Orders Handler", () => {
       quantity: testOrder.quantity,
       user_id: testOrder.user_id,
     });
+  });
+  it("orderByUser method should return a order with the given id", async () => {
+    const token = jwt.sign({ userId: 1 }, process.env.TOKEN_SECRET as Secret);
+    const response = await request(app).get("/users/1/orders").send({ token });
+    expect(response.statusCode).toBe(200);
+    expect(response.body.length).toBeGreaterThan(0);
   });
   it("index method should return a order with the given id", async () => {
     const result: Order = await store.show("1");

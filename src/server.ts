@@ -27,10 +27,7 @@ orderRoutes(app);
 app.get(
   "/test-cors",
   cors(corsOptions),
-  function (
-    _req: express.Request,
-    res: express.Response,
-  ) {
+  function (_req: express.Request, res: express.Response) {
     res.json({ msg: "This is CORS-enabled with a middleware" });
   }
 );

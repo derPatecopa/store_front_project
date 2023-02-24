@@ -45,7 +45,7 @@ export const ordersSuite = describe("Orders Model", () => {
   });
   it("getOrderByUser method should return a list of orders for a user", async () => {
     const createdOrder = await store.create(testOrder);
-    const result = await store.getOrderByUser(createdOrder.user_id);
+    const result = await store.getOrderByUser(createdOrder.user_id.toString());
     expect(result.length).toBeGreaterThan(0);
     expect(result[0].product_id).toEqual(testOrder.product_id);
     expect(result[0].quantity).toEqual(testOrder.quantity);

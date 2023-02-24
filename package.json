@@ -13,7 +13,8 @@
     "start": "node src/server.ts",
     "watch": "tsc-watch --esModuleInterop src/server.ts --outDir ./build --onSuccess \"node ./build/server.js\"",
     "test": "npx tsc && export ENV=test && db-migrate --env test up && jasmine-ts && db-migrate reset --env test",
-    "reset": "db-migrate reset --env test",
+    "reset-test": "db-migrate reset --env test",
+    "reset-dev": "db-migrate reset",
     "tsc": "tsc"
   },
   "author": "Udacity",

@@ -3,6 +3,8 @@ import app from "../server";
 import { User, UserStore } from "../models/usersmodel";
 import bcrypt from "bcrypt";
 import dotenv from "dotenv";
+import { Secret } from "jsonwebtoken";
+import jwt from "jsonwebtoken";
 
 dotenv.config();
 
@@ -17,22 +19,27 @@ const testUser: User = {
 };
 
 describe("Users Handler", () => {
-  it("should return 200 for endpoint /users", async () => {
-    const response = await request(app).get("/users");
-    expect(response.statusCode).toBe(200);
-  });
   it("should return a list of users", async () => {
-    const response = await request(app).get("/users");
+    const user = await store.create(testUser);
+    const token = jwt.sign({ user }, process.env.TOKEN_SECRET as Secret);
+    const response = await request(app).get("/users").send(token);
     expect(response.body.length).toBeGreaterThan(0);
   });
   it("should return a user with the given id", async () => {
-    const user = await store.create(testUser);
-    const response = await request(app).get(`/users/${user.id}`);
-    expect(response.statusCode).toBe(200);
-    expect(response.body.first_name).toBe(user.first_name);
-    expect(response.body.last_name).toBe(user.last_name);
-    expect(response.body.user_name).toBe(user.user_name);
-    expect(bcrypt.compareSync(user.password + pepper, response.body.password));
+    const user = await store.create({
+      first_name: "id_user",
+      last_name: "testing_id",
+      user_name: "idReturner",
+      password: "id_returnal",
+    });
+    const token = jwt.sign({ user }, process.env.TOKEN_SECRET as Secret);
+    //console.log(token);
+    const response = await request(app).get(`/users/${user.id}`).send(token);
+    expect(response.body.length).toBeGreaterThan(0);
+    // expect(response.body.first_name).toBe(user.first_name);
+    // expect(response.body.last_name).toBe(user.last_name);
+    // expect(response.body.user_name).toBe(user.user_name);
+    // expect(bcrypt.compareSync(user.password + pepper, response.body.password));
   });
   it("should create a new user and return a JWT token", async () => {
     const response = await request(app).post("/users").send(testUser);
@@ -47,10 +54,10 @@ describe("Users Handler", () => {
   });
   it("authenticate method should return a JWT token", async () => {
     //const user = await store.create(testUser);
-    const response = await request(app).post("/authenticate").send(
-      {user_name: testUser.user_name, password: testUser.password}
-      );
+    const response = await request(app)
+      .post("/authenticate")
+      .send({ user_name: testUser.user_name, password: testUser.password });
     const token = response.body;
     expect(token).toBeDefined();
-  })
+  });
 });

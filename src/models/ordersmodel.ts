@@ -77,17 +77,17 @@ export class OrderStore {
     }
   }
 
-  async getOrderByUser(userId: number): Promise<Order[]> {
+  async getOrderByUser(user_Id: string): Promise<Order[]> {
     if (Client) {
       try {
         const conn = await Client.connect();
         const sql = "SELECT * FROM orders WHERE user_id=($1)";
-        const result = await conn.query(sql, [userId]);
+        const result = await conn.query(sql, [user_Id.toString()]);
         conn.release();
         return result.rows;
       } catch (err) {
         throw new Error(
-          `Could not get orders for user ${userId}. Error: ${err}`
+          `Could not get orders for user ${user_Id}. Error: ${err}`
         );
       }
     } else {
