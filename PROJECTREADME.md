@@ -36,3 +36,17 @@ type npm run watch into you console to start the server. you can find all the ge
 6. to reset the dev database you can type npm run reset-dev
 this will delete all content from the dev database
 
+.env variables 
+POSTGRES_HOST=localhost
+POSTGRES_PORT=5433
+POSTGRES_TEST_PORT=5434
+POSTGRES_DB=storefront
+POSTGRES_TEST_DB=test_storefront
+POSTGRES_USER=derPatecopa
+POSTGRES_TEST_USER=derPatecopatest
+POSTGRES_PASSWORD=docker
+POSTGRES_TEST_PASSWORD=test
+ENV=dev
+BCRYPT_PASSWORD=ThisIsATest123
+SALT_ROUNDS=10
+TOKEN_SECRET=ThisIsASecret123
