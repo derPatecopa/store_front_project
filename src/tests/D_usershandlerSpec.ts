@@ -1,14 +1,14 @@
 import request from "supertest";
 import app from "../server";
 import { User, UserStore } from "../models/usersmodel";
-import bcrypt from "bcrypt";
+//import bcrypt from "bcrypt";
 import dotenv from "dotenv";
 import { Secret } from "jsonwebtoken";
 import jwt from "jsonwebtoken";
 
 dotenv.config();
 
-const pepper = process.env.BCRYPT_PASSWORD;
+//const pepper = process.env.BCRYPT_PASSWORD;
 
 const store = new UserStore();
 const testUser: User = {
