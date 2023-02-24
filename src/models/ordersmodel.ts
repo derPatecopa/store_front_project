@@ -8,6 +8,7 @@ export type Order = {
   product_id: number;
   quantity: number;
   user_id: number;
+  order_status?: string;
 };
 
 const defaultOrder = {
@@ -15,6 +16,7 @@ const defaultOrder = {
   product_id: 0,
   quantity: 0,
   user_id: 0,
+  order_status: 'active'
 };
 
 export class OrderStore {
