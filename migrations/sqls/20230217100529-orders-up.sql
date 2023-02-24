@@ -1,1 +1,2 @@
-CREATE TABLE orders (id SERIAL PRIMARY KEY, product_id INT REFERENCES products(id), quantity INT, user_id INT REFERENCES users(id));
+CREATE TYPE order_status as ENUM ('active', 'complete');
+CREATE TABLE orders (id SERIAL PRIMARY KEY, product_id INT REFERENCES products(id), quantity INT, user_id INT REFERENCES users(id), order_status order_status DEFAULT 'active');
