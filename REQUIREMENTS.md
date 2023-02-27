@@ -24,27 +24,27 @@ There is a seperate authenticate endpoint at -> http://localhost:3000/authentica
 
 ## Data Shapes
 #### Product
--  id
-- name
-- price
+-  id: Number
+- name: String -> VARCHAR(200)
+- price: Number
 - [OPTIONAL] category
 
 Table: Products (id:Primary Serial Key [foreign key to orders table], name:varchar, price:number)
 
 #### User
-- id
-- firstName
-- lastName
-- password
+- id: Number    
+- firstName: String -> VARCHAR(250)
+- lastName: String -> VARCHAR(250)
+- password: String -> TEXT
 
 Table: Users (id: Primary Serial Key[foreign key to orders table], first_name:varchar, last_name:varchar, user_name:varchar, password:text)
 
 #### Orders
-- id
-- id of each product in the order
-- quantity of each product in the order
-- user_id
-- status of order (active or complete)
+- id: Number
+- id of each product in the order: Number
+- quantity of each product in the order: Number
+- user_id: Number
+- status of order (active or complete): String -> VARCHAR(100)
 
 Table: Orders (id: Primary Serial Key, product_id:products(id), quantity:number, user_id:users(id), order_status order_status DEFAULT 'active')
 
