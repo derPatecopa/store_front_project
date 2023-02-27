@@ -1,7 +1,6 @@
 import Client from "../database";
 import dotenv from "dotenv";
 
-
 dotenv.config();
 
 export type OrderProducts = {
@@ -64,10 +63,10 @@ export class OrderProductStore {
         const sql =
           "INSERT INTO order_products (order_id, product_id, quantity, user_id) VALUES ($1, $2, $3, $4) RETURNING *";
         const result = await conn.query(sql, [
-         o.order_id,
-         o.product_id,
-         o.quantity,
-         o.user_id
+          o.order_id,
+          o.product_id,
+          o.quantity,
+          o.user_id,
         ]);
         const order = result.rows[0];
         conn.release();

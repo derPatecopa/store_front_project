@@ -1,5 +1,8 @@
 import express, { Request, Response } from "express";
-import { OrderProducts, OrderProductStore } from "../models/order_productsmodel";
+import {
+  OrderProducts,
+  OrderProductStore,
+} from "../models/order_productsmodel";
 import jwt, { Secret } from "jsonwebtoken";
 import dotenv from "dotenv";
 
@@ -20,13 +23,13 @@ const show = async (req: Request, res: Response) => {
 };
 
 const create = async (req: Request, res: Response) => {
-//   try {
-//     jwt.verify(req.body.token, process.env.TOKEN_SECRET as Secret);
-//   } catch (err) {
-//     res.status(401);
-//     res.json(`Invalid token ${err}`);
-//     return;
-//   }
+  //   try {
+  //     jwt.verify(req.body.token, process.env.TOKEN_SECRET as Secret);
+  //   } catch (err) {
+  //     res.status(401);
+  //     res.json(`Invalid token ${err}`);
+  //     return;
+  //   }
   try {
     const orderProduct: OrderProducts = {
       order_id: req.body.order_id,

@@ -28,7 +28,7 @@ describe("Orders Handler", () => {
       product_id: testOrder.product_id,
       quantity: testOrder.quantity,
       user_id: testOrder.user_id,
-      order_status: 'active'
+      order_status: "active",
     });
   });
   it("orderByUser method should return a order with the given id", async () => {
@@ -44,7 +44,7 @@ describe("Orders Handler", () => {
       product_id: jasmine.any(Number),
       quantity: jasmine.any(Number),
       user_id: jasmine.any(Number),
-      order_status: 'active'
+      order_status: "active",
     });
   });
 });

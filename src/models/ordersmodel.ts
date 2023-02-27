@@ -16,7 +16,7 @@ const defaultOrder = {
   product_id: 0,
   quantity: 0,
   user_id: 0,
-  order_status: 'active'
+  order_status: "active",
 };
 
 export class OrderStore {
