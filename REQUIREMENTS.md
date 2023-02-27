@@ -21,6 +21,10 @@ There is a seperate authenticate endpoint at -> http://localhost:3000/authentica
 - Current Order by user (args: user id)[token required] -> http://localhost:3000/users/:id/orders GET
 - [OPTIONAL] Completed Orders by user (args: user id)[token required] -> update this if i decide to do it
 
+#### Order_product
+- Index http://localhost:3000/orderproducts GET
+- Show http://localhost:3000/orderproducts/:id GET
+- Create http://localhost:3000/orderproducts POST
 
 ## Data Shapes
 #### Product
@@ -46,5 +50,14 @@ Table: Users (id: Primary Serial Key[foreign key to orders table], first_name:va
 - user_id: Number
 - status of order (active or complete): String -> VARCHAR(100)
 
+
 Table: Orders (id: Primary Serial Key, product_id:products(id), quantity:number, user_id:users(id), order_status order_status DEFAULT 'active')
 
+#### Order_Product
+- id: Number
+- order_id: Number
+- product_id: Number
+- quantity: Number,
+- user_id: Number
+
+Table: order_products (id SERIAL PRIMARY KEY, order_id INT REFERENCES orders(id), product_id INT REFERENCES products(id), quantity INT, user_id INT REFERENCES user(id));
